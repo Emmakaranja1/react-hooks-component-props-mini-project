@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import About from "../components/About";
-import logo from "../assets/logo"
+import logo from "../assets/logo";
 
 test("renders a <aside> element", () => {
   const { container } = render(<About />);
@@ -28,3 +28,12 @@ test("renders a <p> with the about text", () => {
   expect(p).toBeInTheDocument();
   expect(p.tagName).toBe("P");
 });
+
+test("renders a <aside> element with image and text (combined test)", () => {
+  render(<About about="Test about text" />);
+  const image = screen.getByRole("img");
+  const text = screen.getByText("Test about text");
+  expect(image).toBeInTheDocument();
+  expect(text).toBeInTheDocument();
+});
+
